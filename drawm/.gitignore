@@ -1,0 +1,3 @@
+./include/canvas.h
+./obj/canvas.o
+./src/canvas.c
