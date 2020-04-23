@@ -1,0 +1,25 @@
+#!/usr/bin/bash
+clear
+source extract.sh
+
+if ${values['COMPILEGRESOURCE']} ; then
+    echo "compiling the gresource theme..."
+    if ! ./compilegresource ; then
+        echo "Could not compile the gresource theme" >&2; exit 1;
+    fi
+fi
+
+if ${values['MAKE']} ; then
+    echo "compiling the source..."
+    if ! make ; then
+        echo "Could not compile the source" >&2; exit 1;
+    fi
+fi
+
+if ${values['EXEC']} ; then
+    if ! ${values['MAIN']} ; then
+        echo "Could not execute main" >&2; exit 1;
+    fi
+fi
+
+

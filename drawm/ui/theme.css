@@ -1,0 +1,53 @@
+/* window
+{
+    background-color: purple;
+}  */
+/* box > frame
+{
+    background-color: gray;
+} */
+
+#statusbar-frame
+{
+    background-color: #474747;
+}
+#toolbar-frame
+{
+    background-color: #474747;
+}
+/* button
+{
+    border: 5px solid;
+    color: #C2C2C2;
+} */
+label
+{
+    color: #C2C2C2;
+}
+#h-box
+{
+    background-color: #808080;
+}
+#canvas-frame
+{ 
+    background-color: white;
+}
+
+/* box#hbox
+{
+    border: 5px solid; 
+    background-color: red;
+    color: yellowgreen;
+} */
+/* frame
+{
+    background-color: red;
+} */
+/* frame#innerFrame
+{
+    background-color: yellow;
+}
+frame#outerFrame
+{
+    background-color: rgb(94, 94, 177);
+} */

@@ -2,6 +2,23 @@
     "files.associations": {
         "global.h": "c",
         "helpers.h": "c",
-        "signals.h": "c"
+        "signals.h": "c",
+        "gcolor3-application.h": "c",
+        "gcolor3-color-store.h": "c",
+        "gcolor3-window.h": "c",
+        "gcolor3-color-item.h": "c",
+        "config.h": "c",
+        "gcolor3-color-row.h": "c",
+        "gcolor3-color-selection.h": "c",
+        "utils.h": "c",
+        "math.h": "c",
+        "gcolor3-marshalers.h": "c",
+        "array": "c",
+        "deque": "c",
+        "string": "c",
+        "unordered_map": "c",
+        "vector": "c",
+        "string_view": "c",
+        "initializer_list": "c"
     }
 }

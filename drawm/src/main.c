@@ -25,55 +25,74 @@
 #+
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-#include "../include/global.h"
 #include "../include/helpers.h"
 #include "../include/signals.h"
 
-int main(int argc, char *argv[]) 
+
+
+// void    css_set(GtkCssProvider *, GtkWidget *);
+
+void config_page(Page* page)
+{
+	page -> start = page -> end = page -> history_start = page -> history_end = NULL;
+}
+
+int main(int argc, char **argv) 
 {
 
 	Point* p1,*p2;
+	cairo_t *cr;
 
-	rounded = 1;
+	app.pages = malloc(sizeof(Page));
+	app.num_of_pages=1;
+	app.curr=0;
+
+	prop.rounded = 1;
+	prop.red = prop.green = prop.blue = 0.0;
+	prop.size=INITIAL_SIZE;
 	err = NULL;
-	p1 = p2 = start = end = history_start = history_end = NULL;
+	CONFIG_PAGE;
 
-	red = green = blue = 0.0;
+  	/* Paint to the surface, where we store our state */
+  	cr = cairo_create (surface);
+	set_surface(&cr);
+	cairo_destroy(cr);
 
 	gtk_init(&argc, &argv); // init Gtk
 	
-	//builder = gtk_builder_new_from_file("canvas.glade");
-	builder = gtk_builder_new_from_resource("/ui/canvas.glade");
+	app.builder = gtk_builder_new_from_resource("/ui/window.ui");
 
-	window = GTK_WIDGET(gtk_builder_get_object(builder, "window"));
+	app.window = GTK_WIDGET(gtk_builder_get_object(app.builder, "window"));
 
-	g_signal_connect(window, "destroy", G_CALLBACK(on_destroy), NULL);
+	// g_signal_connect(app.pages[app.curr].canvas, "realize", G_CALLBACK(on_realize), NULL);
 
-    gtk_builder_connect_signals(builder, NULL);
 
-	box		= GTK_WIDGET(gtk_builder_get_object(builder, "box"));
-	canvas		= GTK_WIDGET(gtk_builder_get_object(builder, "canvas"));
-	undo		= GTK_WIDGET(gtk_builder_get_object(builder, "undo"));
-	clear		= GTK_WIDGET(gtk_builder_get_object(builder, "clear"));
-	Red		= GTK_WIDGET(gtk_builder_get_object(builder, "Red"));
-	Green		= GTK_WIDGET(gtk_builder_get_object(builder, "Green"));
-	Blue		= GTK_WIDGET(gtk_builder_get_object(builder, "Blue"));
-	White		= GTK_WIDGET(gtk_builder_get_object(builder, "White"));
+    gtk_builder_connect_signals(app.builder, NULL);
 
-	g_object_unref(builder);
+	
+	app.pages[app.curr].canvas		= GTK_WIDGET(gtk_builder_get_object(app.builder, "canvas"));
+	app.pages[app.curr].canvasFrame		= GTK_WIDGET(gtk_builder_get_object(app.builder, "canvasFrame"));
+	app.window_stack = 	  GTK_WIDGET(gtk_builder_get_object(app.builder, "window_stack"));
+	app.colorsel		= GTK_WIDGET(gtk_builder_get_object(app.builder, "colorsel"));
 
-	gtk_widget_set_events(canvas, GDK_BUTTON_MOTION_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
+	app.cssProvider = gtk_css_provider_new();
+  	gtk_css_provider_load_from_resource(app.cssProvider, "/ui/theme.css");
+  	gtk_style_context_add_provider_for_screen(gdk_screen_get_default(),
+                               GTK_STYLE_PROVIDER(app.cssProvider),
+                               GTK_STYLE_PROVIDER_PRIORITY_USER);
+	
 
-	gtk_window_set_keep_above (GTK_WINDOW(window), TRUE);
+	
 
-	gtk_widget_show(window);
+	gtk_widget_set_events(app.pages[app.curr].canvas, GDK_BUTTON_MOTION_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
+
+	gtk_window_set_keep_above (GTK_WINDOW(app.window), TRUE);
+
+	gtk_widget_show(app.window);
 
 	gtk_main();
 
+	//free_app();
+
 	return EXIT_SUCCESS;
 }
-
-
-
-
-

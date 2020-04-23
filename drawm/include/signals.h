@@ -14,6 +14,7 @@ void	on_Red_clicked(GtkWidget *b1);
 void	on_Green_clicked(GtkWidget *b1);
 void	on_Blue_clicked(GtkWidget *b1);
 void	on_White_clicked(GtkWidget *b1);
+void color_changed (GtkColorSelection *colorsel, gpointer user_data);
 gboolean on_canvas_button_release_event (GtkWidget *widget, GdkEventButton *event);
 gboolean on_canvas_motion_notify_event (GtkWidget *widget, GdkEventMotion *event, gpointer data);
 gboolean on_canvas_button_press_event (GtkWidget *widget, GdkEventButton *event);

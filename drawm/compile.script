@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# clear
-# rm -f part1-bin
-# gcc -g -Wno-format -o canvas canvas.c -Wno-deprecated-declarations -Wno-format-security -lm `pkg-config --cflags --libs gtk+-3.0` -export-dynamic
-
-clear
-make clean
-make

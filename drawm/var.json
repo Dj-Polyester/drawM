@@ -1,0 +1,18 @@
+[
+  {
+    "key": "MAKE",
+    "value": true
+  },
+  {
+    "key": "EXEC",
+    "value": true
+  },
+  {
+    "key": "COMPILEGRESOURCE",
+    "value": true
+  },
+  {
+    "key": "MAIN",
+    "value": "./main"
+  }
+]
