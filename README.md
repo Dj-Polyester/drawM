@@ -2,4 +2,5 @@
 A simple drawing tool developed in GTK
 
 The project aims on simple, light and quick sketching for workspace (i.e. development). This is our current mission. 
-*NOTE:* This branch is an unstable version.
+
+**NOTE:** This branch is an unstable version.
